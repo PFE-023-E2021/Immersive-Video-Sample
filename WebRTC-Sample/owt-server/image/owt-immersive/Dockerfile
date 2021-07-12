@@ -195,7 +195,7 @@ RUN git clone ${SVT_HEVC_REPO} && \
 # Build OWT specific modules
 
 ARG OWTSERVER_COMMIT=fd71357d6fdbd57d3c4be2028976bc2b34fff781
-ARG OWTSERVER_REPO=https://github.com/open-webrtc-toolkit/owt-server.git
+ARG OWTSERVER_REPO=https://github.com/PFE-023-E2021/owt-server.git
 ARG OPENH264_MAJOR=1
 ARG OPENH264_MINOR=7
 ARG OPENH264_SOVER=4
