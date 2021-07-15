@@ -314,7 +314,7 @@ void WebRTCMediaSource::setMediaInfo() {
   vi.framerate_num = m_source_framerate_num;
   vi.mFpt = 0;
   vi.mime_type = "";
-  vi.mProjFormat = 0;
+  vi.mProjFormat = 1;
   vi.mPixFmt = PixelFormat::PIX_FMT_YUV420P;
 
   vi.width = m_source_width;
