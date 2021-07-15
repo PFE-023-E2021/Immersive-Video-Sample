@@ -47,6 +47,8 @@ RUN  wget -O - ${YASM_REPO} | tar xz && \
 
 # Build libnice
 ARG NICE_VER="0.1.4"
+#https://gitlab.freedesktop.org/libnice/libnice/-/archive/0.1.4/libnice-0.1.4.tar.gz
+#http://nice.freedesktop.org/releases/libnice-0.1.4.tar.gz
 ARG NICE_REPO=http://nice.freedesktop.org/releases/libnice-${NICE_VER}.tar.gz
 ARG LIBNICE_PATCH_VER="4.3.1"
 ARG LIBNICE_PATCH_REPO=https://github.com/open-webrtc-toolkit/owt-server/archive/v${LIBNICE_PATCH_VER}.tar.gz
@@ -54,6 +56,7 @@ ARG LIBNICE_PATCH_REPO=https://github.com/open-webrtc-toolkit/owt-server/archive
 RUN yum install -y -q glib2-devel
 
 RUN wget -O - ${NICE_REPO} | tar xz && \
+    cd libnice-${NICE_VER} && \
     cd libnice-${NICE_VER} && \
     wget -O - ${LIBNICE_PATCH_REPO} | tar xz  && \
     patch -p1 < owt-server-${LIBNICE_PATCH_VER}/scripts/patches/libnice014-agentlock.patch && \
@@ -194,8 +197,8 @@ RUN git clone ${SVT_HEVC_REPO} && \
 
 # Build OWT specific modules
 
-ARG OWTSERVER_COMMIT=fd71357d6fdbd57d3c4be2028976bc2b34fff781
-ARG OWTSERVER_REPO=https://github.com/PFE-023-E2021/owt-server.git
+#ARG OWTSERVER_COMMIT=fd71357d6fdbd57d3c4be2028976bc2b34fff781
+#ARG OWTSERVER_REPO=https://github.com/PFE-023-E2021/owt-server.git
 ARG OPENH264_MAJOR=1
 ARG OPENH264_MINOR=7
 ARG OPENH264_SOVER=4
@@ -258,8 +261,8 @@ RUN cd /home && \
 RUN git clone -b ${OWT_BRANCH} ${OWTSERVER_REPO} && \
     source /opt/rh/devtoolset-7/enable && \
 
-    cd ${SERVER_PATH} && git reset --hard ${OWTSERVER_COMMIT} && \
-    curl https://patch-diff.githubusercontent.com/raw/open-webrtc-toolkit/owt-server/pull/708.patch | git apply && \
+    #cd ${SERVER_PATH} && git reset --hard ${OWTSERVER_COMMIT} && \
+    #curl https://patch-diff.githubusercontent.com/raw/open-webrtc-toolkit/owt-server/pull/708.patch | git apply && \
 
     # Install node modules for owt
     npm config set proxy=${http_proxy} && \
